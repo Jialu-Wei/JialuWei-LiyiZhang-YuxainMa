@@ -22,16 +22,27 @@ app.use(express.json());
 app.use(cookieParser());
 
 // 3. Session 
+// app.use(session({
+//   secret: "battleship-session-secret",
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     secure: true,        
+//     sameSite: "None",    
+//     httpOnly: true
+//   }
+// }));
 app.use(session({
   secret: "battleship-session-secret",
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: true,        
-    sameSite: "None",    
+    secure: process.env.NODE_ENV === "production",  
+    sameSite: "None",
     httpOnly: true
   }
 }));
+
 
 app.use("/api/user",   userRoutes);
 app.use("/api/game",   gameRoutes);

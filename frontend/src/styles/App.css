@@ -273,20 +273,30 @@ main {
   #auth-right {
     position: static;
     transform: none;
+    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-wrap: nowrap;              /* ✅ 保持横排 */
     padding: 10px 0;
     gap: 0.5rem;
+    width: 100%;
+  }
+
+  #auth-right li {
+    flex-shrink: 1;
   }
 
   #auth-right li a,
   .logout-btn,
   .username-display {
-    font-size: 0.9rem;
-    padding: 8px 14px;
+    font-size: 0.75rem;             /* ✅ 缩小字体 */
+    padding: 6px 10px;
     border: 1px solid white;
     border-radius: 4px;
-    display: inline-block;
+    white-space: nowrap;            /* ✅ 防止换行 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;               /* ✅ 保证不会太宽 */
   }
 
   .dropdown-logout {
