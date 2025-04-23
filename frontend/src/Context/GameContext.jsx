@@ -9,7 +9,7 @@ import React, {
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import { placeShipsRandomly } from "../utils/GameLogic";
-import { API_BASE } from "../utils/api"; 
+import { API_BASE } from "../config/api";
 
 const GameContext = createContext();
 

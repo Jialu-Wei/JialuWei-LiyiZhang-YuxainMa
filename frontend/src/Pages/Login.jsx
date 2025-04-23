@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
-import { API_BASE } from '../api'; 
+import { API_BASE } from "../config/api";
 import '../styles/Login.css';
 
 const Login = () => {

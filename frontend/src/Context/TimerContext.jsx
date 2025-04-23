@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { API_BASE } from "../utils/api"; 
+import { API_BASE } from "../config/api";
 
 const TimerContext = createContext();
 

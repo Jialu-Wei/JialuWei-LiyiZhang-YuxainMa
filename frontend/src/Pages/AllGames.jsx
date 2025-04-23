@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
-import { API_BASE } from "../utils/api";  
+import { API_BASE } from "../config/api";
 import "../styles/AllGames.css";
+
 
 const AllGames = () => {
   const { user } = useContext(UserContext);
