@@ -1,5 +1,3 @@
-
-
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import Home from "./Pages/Home";
@@ -71,11 +69,9 @@ function AppContent() {
                 onMouseLeave={() => setIsGameOpen(false)}
               >
                 <span className="game">Game</span>
-                <li className="nav-item"><Link to="/scores">Ai Mode</Link></li>
-
+                                  <li><Link  to="/game" onClick={() => setIsGameOpen(false)}>Normal Game</Link></li>
+                
                 <ul className={`dropdown-menu ${isGameOpen ? "show" : ""}`}>
-                                    <li><Link  to="/game" onClick={() => setIsGameOpen(false)}>Ai</Link></li>
-                  
                   {user && (
                     <>
                     <li>
@@ -142,8 +138,6 @@ function AppContent() {
           }
         />
         <Route path="/games" element={<AllGames />} /> {/*  All Games  */}
-        <Route path="/game" element={<Game />} />
-
 
         <Route path="/rules" element={<Rules />} />
         <Route path="/scores" element={<Scores />} />
