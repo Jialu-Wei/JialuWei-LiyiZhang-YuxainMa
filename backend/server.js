@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./db");
-connectDB();
 const cookieParser = require("cookie-parser");
+const session = require("express-session");  
+
+connectDB();
 
 const userRoutes   = require("./apis/user");
 const gameRoutes   = require("./apis/game");
@@ -11,13 +13,23 @@ const scoresRoutes = require("./apis/scores");
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// Middleware
 app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: "https://battleship-fronted.onrender.com", 
-  credentials: true,
+  origin: "https://battleship-frontend.onrender.com",
+  credentials: true
+}));
+
+app.use(session({
+  secret: "battleship-session-secret", 
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true,      
+    sameSite: "None",  
+    httpOnly: true
+  }
 }));
 
 app.use("/api/user",   userRoutes);

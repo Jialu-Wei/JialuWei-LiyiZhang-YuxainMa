@@ -4,7 +4,7 @@ const Game = require("../db/Game");
 const { v4: uuidv4 } = require("uuid");
 
 router.post("/create", async (req, res) => {
-  const username = req.cookies.username;
+  const username = req.session?.user?.username;
   if (!username) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
   }
@@ -25,11 +25,10 @@ router.post("/create", async (req, res) => {
     console.error("Error creating game:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
-}
-);
+});
 
 router.patch("/:id/join", async (req, res) => {
-  const username = req.cookies.username;
+  const username = req.session?.user?.username;
   if (!username) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
   }
@@ -58,11 +57,10 @@ router.patch("/:id/join", async (req, res) => {
     console.error("Error joining game:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
-}
-);
+});
 
 router.get("/:id", async (req, res) => {
-  try{
+  try {
     const gameDoc = await Game.findOne({ gameId: req.params.id });
     if (!gameDoc) {
       return res.status(404).json({ success: false, message: "Game not found" });
@@ -89,7 +87,7 @@ router.get("/", async (req, res) => {
 });
 
 router.patch("/:id/board", async (req, res) => {
-  const username = req.cookies.username;
+  const username = req.session?.user?.username;
   const { board } = req.body;
   if (!username) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
@@ -110,16 +108,15 @@ router.patch("/:id/board", async (req, res) => {
     console.error("Error updating board:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
-}
-);
+});
 
 router.patch("/:id/hit", async (req, res) => {
-  const attacker = req.cookies.username;
+  const attacker = req.session?.user?.username;
   const { row, col } = req.body;
   if (!attacker) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
   }
-try{
+  try {
     const game = await Game.findOne({ gameId: req.params.id });
     if (!game) {
       return res.status(404).json({ success: false, message: "Game not found" });

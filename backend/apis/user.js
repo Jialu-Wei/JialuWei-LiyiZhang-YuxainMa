@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
     user = new User({ username, password });
     await user.save();
 
-    res.cookie("username", username, { httpOnly: true });
+    req.session.user = { username };  // ✅ 替换 cookie 登录为 session 登录
     res.status(201).json({ success: true, message: "Registered and logged in successfully.", username });
 
   } catch (err) {
@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ success: false, message: "Invalid username or password." });
     }
 
-    res.cookie("username", username, { httpOnly: true });
+    req.session.user = { username };  // ✅ 替换 cookie 登录为 session 登录
     res.json({ success: true, message: "Login successful.", username });
 
   } catch (err) {
@@ -53,8 +53,10 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  res.clearCookie("username");
-  res.json({ success: true, message: "Logged out successfully." });
+  req.session.destroy(() => {                         // ✅ 清除 session
+    res.clearCookie("connect.sid");                   // ✅ 删除 session cookie
+    res.json({ success: true, message: "Logged out successfully." });
+  });
 });
 
 module.exports = router;
