@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: "https://battleship-frontend.onrender.com",
+  origin: "https://battleship-fronted.onrender.com",
   credentials: true
 }));
 
