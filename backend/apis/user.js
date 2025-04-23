@@ -59,4 +59,14 @@ router.post("/logout", (req, res) => {
   });
 });
 
+// GET /api/user/me - 用于前端自动识别登录状态
+router.get("/me", (req, res) => {
+  if (req.session?.user) {
+    res.json({ success: true, user: req.session.user });
+  } else {
+    res.status(401).json({ success: false, message: "Not logged in" });
+  }
+});
+
+
 module.exports = router;
