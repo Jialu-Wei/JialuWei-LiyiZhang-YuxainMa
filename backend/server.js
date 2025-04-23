@@ -24,6 +24,10 @@ app.use("/api/scores", scoresRoutes);
 //   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 // });
 
+app.get("/", (req, res) => {
+  res.send("🎯 Battleship backend is running!");
+});
+
 app.listen(PORT, () =>
   console.log(`✅ Server running on http://localhost:${PORT}`)
 );
