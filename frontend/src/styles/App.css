@@ -268,3 +268,31 @@ main {
 
 
 
+
+@media (max-width: 768px) {
+  #auth-right {
+    position: static;
+    transform: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    gap: 0.5rem;
+  }
+
+  #auth-right li a,
+  .logout-btn,
+  .username-display {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border: 1px solid white;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .dropdown-logout {
+    top: 100%;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
