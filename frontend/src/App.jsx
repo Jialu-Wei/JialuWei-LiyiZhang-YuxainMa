@@ -73,7 +73,7 @@ function AppContent() {
                 <span className="game">Game</span>
                 
                 <ul className={`dropdown-menu ${isGameOpen ? "show" : ""}`}>
-                <li><Link  to="/game" onClick={() => setIsGameOpen(false)}>Normal Game</Link></li>
+                {/* <li><Link  to="/game" onClick={() => setIsGameOpen(false)}>Normal Game</Link></li> */}
 
                   {user && (
                     <>
@@ -141,7 +141,7 @@ function AppContent() {
           }
         />
         <Route path="/games" element={<AllGames />} /> {/*  All Games  */}
-        <Route path="/game" element={<Game />} />
+        {/* <Route path="/game" element={<Game />} /> */}
 
 
         <Route path="/rules" element={<Rules />} />
@@ -153,25 +153,15 @@ function AppContent() {
   );
 }
 
+
+
 export default function App() {
   return (
     <UserProvider>
-      <GameProvider>
-        <TimerProvider>
-          <AppContent />
-        </TimerProvider>
-      </GameProvider>
+        <AppContent />
     </UserProvider>
   );
 }
-
-// export default function App() {
-//   return (
-//     <UserProvider>
-//         <AppContent />
-//     </UserProvider>
-//   );
-// }
 
 
   
