@@ -10,8 +10,7 @@ import Scores from "./Pages/Scores";
 import NewGame from "./Pages/NewGame"; 
 import AllGames from "./Pages/AllGames";
 import { API_BASE } from "./config/api";
-
-
+import { TimerProvider } from "./Context/TimerContext";
 
 
 import { GameProvider } from "./Context/GameContext";
@@ -157,7 +156,22 @@ function AppContent() {
 export default function App() {
   return (
     <UserProvider>
-        <AppContent />
+      <GameProvider>
+        <TimerProvider>
+          <AppContent />
+        </TimerProvider>
+      </GameProvider>
     </UserProvider>
   );
 }
+
+// export default function App() {
+//   return (
+//     <UserProvider>
+//         <AppContent />
+//     </UserProvider>
+//   );
+// }
+
+
+  
