@@ -71,8 +71,10 @@ function AppContent() {
                 onMouseLeave={() => setIsGameOpen(false)}
               >
                 <span className="game">Game</span>
+                <li className="nav-item"><Link to="/scores">Ai Mode</Link></li>
+
                 <ul className={`dropdown-menu ${isGameOpen ? "show" : ""}`}>
-                                    <li><Link  to="/game" onClick={() => setIsGameOpen(false)}>Ai Mode</Link></li>
+                                    <li><Link  to="/game" onClick={() => setIsGameOpen(false)}>Ai</Link></li>
                   
                   {user && (
                     <>
