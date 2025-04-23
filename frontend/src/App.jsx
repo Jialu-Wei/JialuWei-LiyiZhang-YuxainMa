@@ -7,6 +7,8 @@ import Rules from "./Pages/Rules";
 import Scores from "./Pages/Scores";
 import NewGame from "./Pages/NewGame"; 
 import AllGames from "./Pages/AllGames";
+import { API_BASE } from "./config/api";
+
 
 
 import { GameProvider } from "./Context/GameContext";
@@ -21,7 +23,7 @@ function AppContent() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await fetch("/api/user/logout", { 
+    await fetch(`${API_BASE}/api/user/logout`, {
       method: "POST", 
       credentials: "include"
     });
@@ -31,7 +33,7 @@ function AppContent() {
 
   const handleNewGame = async () => {
     try {
-      const res = await fetch("/api/game/create", {
+      const res = await fetch(`${API_BASE}/api/game/create`, {
         method: "POST",
         credentials: "include",
       });
