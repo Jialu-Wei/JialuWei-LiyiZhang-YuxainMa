@@ -1,6 +1,8 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import Home from "./Pages/Home";
+import Game from "./Pages/Game";
+
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Rules from "./Pages/Rules";
@@ -8,6 +10,7 @@ import Scores from "./Pages/Scores";
 import NewGame from "./Pages/NewGame"; 
 import AllGames from "./Pages/AllGames";
 import { API_BASE } from "./config/api";
+
 
 
 
