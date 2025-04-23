@@ -19,10 +19,10 @@ app.use("/api/user",   userRoutes);
 app.use("/api/game",   gameRoutes);
 app.use("/api/scores", scoresRoutes);
 
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
-app.get("*", (_, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.get("*", (_, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// });
 
 app.listen(PORT, () =>
   console.log(`✅ Server running on http://localhost:${PORT}`)
