@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../api'; 
 import '../styles/Login.css';
 
 const Register = () => {
@@ -19,8 +20,8 @@ const Register = () => {
       return;
     }
 
-    try{
-      const res = await fetch('/api/user/register', {
+    try {
+      const res = await fetch(`${API_BASE}/api/user/register`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -48,9 +49,7 @@ const Register = () => {
 
   return (
     <main className="auth-container">
-      {/* 🔔 提示信息区域 */}
       <div className={isSuccess ? 'success-message' : 'error'}>{message}</div>
-
       <form onSubmit={handleRegister} className="login-form">
         <input
           value={username}

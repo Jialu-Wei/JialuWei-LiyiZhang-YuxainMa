@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
+import { API_BASE } from '../api'; 
 import '../styles/Login.css';
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/user/login', {
+      const res = await fetch(`${API_BASE}/api/user/login`, { 
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

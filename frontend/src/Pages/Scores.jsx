@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
+import { API_BASE } from "../api";  
 import "../styles/Scores.css";
 
 const Scores = () => {
@@ -10,7 +11,7 @@ const Scores = () => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    fetch("/api/scores", { credentials: "include" })
+    fetch(`${API_BASE}/api/scores`, { credentials: "include" }) 
       .then(res => res.json())
       .then(data => {
         console.log("✅ Scores API returned:", data);

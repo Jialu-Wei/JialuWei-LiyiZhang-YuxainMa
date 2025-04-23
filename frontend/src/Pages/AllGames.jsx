@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
+import { API_BASE } from "../utils/api";  
 import "../styles/AllGames.css";
 
 const AllGames = () => {
@@ -15,7 +16,7 @@ const AllGames = () => {
       return;
     }
 
-    fetch("/api/game", { credentials: "include" })
+    fetch(`${API_BASE}/api/game`, { credentials: "include" }) 
       .then(res => res.json())
       .then(data => {
         if (data.success) {

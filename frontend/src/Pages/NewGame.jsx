@@ -5,6 +5,7 @@ import { UserContext } from "../Context/UserContext";
 import Board from "../utils/Board";
 import "../styles/NewGame.css";
 
+
 const NewGame = () => {
   const { gameId } = useParams();
   const navigate   = useNavigate();

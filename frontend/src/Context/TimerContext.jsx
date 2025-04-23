@@ -1,13 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { API_BASE } from "../utils/api"; 
 
-// Create a context for the game timer
 const TimerContext = createContext();
 
 export const TimerProvider = ({ children }) => {
-    const [time, setTime] = useState(0);        // Elapsed time in seconds
+    const [time, setTime] = useState(0);
     const [running, setRunning] = useState(false);
 
-    // Load initial time on mount (for refresh resume)
     useEffect(() => {
         const savedStart = localStorage.getItem("timerStartTimestamp");
         if (savedStart) {
@@ -15,11 +14,10 @@ export const TimerProvider = ({ children }) => {
             const now = Date.now();
             const elapsed = Math.floor((now - startTime) / 1000);
             setTime(elapsed);
-            setRunning(true); // Resume timer
+            setRunning(true);
         }
     }, []);
 
-    // Timer interval effect
     useEffect(() => {
         let interval;
         if (running) {
@@ -32,7 +30,6 @@ export const TimerProvider = ({ children }) => {
         return () => clearInterval(interval);
     }, [running]);
 
-    // Start the timer and store the start timestamp
     const start = () => {
         if (!localStorage.getItem("timerStartTimestamp")) {
             localStorage.setItem("timerStartTimestamp", Date.now().toString());
@@ -40,12 +37,10 @@ export const TimerProvider = ({ children }) => {
         setRunning(true);
     };
 
-    // Stop the timer without clearing localStorage (optional)
     const stop = () => {
         setRunning(false);
     };
 
-    // Reset timer and clear stored start time
     const reset = () => {
         setTime(0);
         setRunning(false);
@@ -59,5 +54,4 @@ export const TimerProvider = ({ children }) => {
     );
 };
 
-// Custom hook to use the timer
 export const useTimer = () => useContext(TimerContext);
